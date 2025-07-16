@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Other Frequency</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>The Other Frequency</h1>
+    <p>Retro VHS Horror Game</p>
+  </header>
+
+  <!-- About the Game -->
+  <section id="about">
+    <h2>About The Game</h2>
+    <p>
+      The Other Frequency is a retro synthwave horror adventure about lost radio signals,
+      a missing brother, and a haunting presence lurking between static.
+      Follow Ellie Carter as she tunes in to something that should never be heard.
+    </p>
+  </section>
+
+  <!-- Characters -->
+  <section id="characters">
+    <h2>Characters</h2>
+    <ul id="character-list">
+      <li onclick="showCharacter('ellie')">Ellie Carter</li>
+      <li onclick="showCharacter('alex')">Alex Carter</li>
+      <li onclick="showCharacter('mary')">Mary Carter</li>
+      <li onclick="showCharacter('signalman')">The Signalman</li>
+    </ul>
+
+    <div id="character-bio">
+      <!-- BIO & photo will appear here -->
+    </div>
+  </section>
+
+  <!-- Map -->
+  <section id="map">
+    <h2>Map</h2>
+    <p>Explore the eerie locations where Ellie searches for Alex.</p>
+    <img src="images/map_concept.png" alt="Game Map" id="map-image">
+  </section>
+
+  <!-- Download + Countdown -->
+  <section id="download">
+    <h2>Download</h2>
+    <p>Coming soon! Be ready for the release:</p>
+    <div id="countdown"></div>
+    <p><a href="#" class="button">Download Demo</a></p>
+  </section>
+
+  <footer>
+    <p>© 2025 The Other Frequency</p>
+  </footer>
+
+  <!-- Character BIO script -->
+  <script>
+    function showCharacter(name) {
+      const bioDiv = document.getElementById('character-bio');
+      let content = '';
+
+      if (name === 'ellie') {
+        content = `
+          <img src="images/ellie_carter_photo_bio.png" alt="Ellie Carter">
+          <h3>Ellie Carter</h3>
+          <p><strong>Age:</strong> 17<br>
+          Ellie is the main protagonist of The Other Frequency.
+          She’s brave but haunted by static whispers calling her to find her lost brother.</p>
+          <blockquote>“I’m not leaving until I bring him back.”</blockquote>
+        `;
+      } else if (name === 'alex') {
+        content = `
+          <img src="images/alex_carter_photo_bio.png" alt="Alex Carter">
+          <h3>Alex Carter</h3>
+          <p><strong>Age:</strong> 19<br>
+          Alex vanished a year ago near the old radio tower.
+          His distorted voice echoes through the static, guiding Ellie deeper.</p>
+          <blockquote>“Ellie… you have to find me… before it does.”</blockquote>
+        `;
+      } else if (name === 'mary') {
+        content = `
+          <img src="images/mary_carter_photo_bio.png" alt="Mary Carter">
+          <h3>Mary Carter</h3>
+          <p><strong>Age:</strong> 41<br>
+          Mary is Ellie’s mother. She has never recovered from Alex’s disappearance,
+          and fears Ellie will vanish too.</p>
+          <blockquote>“Ellie… please. There’s nothing on that frequency.”</blockquote>
+        `;
+      } else if (name === 'signalman') {
+        content = `
+          <img src="images/The_Signalman_photo_bio.png" alt="The Signalman">
+          <h3>The Signalman</h3>
+          <p>The Signalman is a cryptic entity lurking in static.
+          A distorted echo that mimics voices and feeds on fear.
+          It tries to keep Ellie tuned in forever.</p>
+          <blockquote>“Can you hear me, Ellie? Stay with me forever…”</blockquote>
+        `;
+      }
+
+      bioDiv.innerHTML = content;
+    }
+
+    // Countdown
+    const countdown = document.getElementById('countdown');
+    const releaseDate = new Date('December 31, 2025 23:59:59').getTime();
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = releaseDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+      if (distance < 0) {
+        clearInterval(interval);
+        countdown.innerHTML = "Released!";
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>
